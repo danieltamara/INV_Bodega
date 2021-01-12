@@ -1,0 +1,967 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="tecnologiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="canasta">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rowid_bodega" Type="int" Nullable="false" />
+          <Property Name="pasillo" Type="int" Nullable="false" />
+          <Property Name="bloque" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="canasta" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <EntityType Name="canasta_detalle">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rowid_canasta" Type="int" Nullable="false" />
+          <Property Name="barras" Type="varchar" MaxLength="20" />
+          <Property Name="cant" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="asignacion">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rowid_producto" Type="int" Nullable="false" />
+          <Property Name="rowid_empleado" Type="int" Nullable="false" />
+          <Property Name="cedul" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="computador">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rowid_producto" Type="int" Nullable="false" />
+          <Property Name="rowid_procesador" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="mac" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="mac_wifi" Type="varchar" MaxLength="100" />
+          <Property Name="ip" Type="varchar" MaxLength="100" />
+          <Property Name="ip_wifi" Type="varchar" MaxLength="100" />
+          <Property Name="memoria" Type="int" Nullable="false" />
+          <Property Name="disco1" Type="int" Nullable="false" />
+          <Property Name="disco2" Type="int" />
+          <Property Name="disco3" Type="int" />
+          <Property Name="rowid_sistema" Type="int" Nullable="false" />
+          <Property Name="bits" Type="int" />
+        </EntityType>
+        <EntityType Name="historico">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rowid_producto" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="conexion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="impresora">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rowid_producto" Type="int" Nullable="false" />
+          <Property Name="tipo_impresora" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="conexion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="mac" Type="varchar" MaxLength="100" />
+          <Property Name="ip" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="marca">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rowid_tipo" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="procesador">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rowid_tipo" Type="int" Nullable="false" />
+          <Property Name="rowid_marca" Type="int" Nullable="false" />
+          <Property Name="serie" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="modelo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="funciona" Type="smallint" Nullable="false" />
+          <Property Name="pulgadas" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sistema">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="abr" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="50" />
+          <Property Name="Identificacion" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="RolID" Type="int" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaCreacion" Type="date" />
+          <Property Name="UsuarioActualizacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaActualizacion" Type="date" />
+          <Property Name="Img_DocIdentidad" Type="varchar" MaxLength="100" />
+          <Property Name="Bodega" Type="varchar" MaxLength="100" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" />
+          <Property Name="fechaModificacion" Type="date" />
+          <Property Name="ind_cambiarClave" Type="bit" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'tecnologia.Conteo.Bodegas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Bodegas">
+          <Key>
+            <PropertyRef Name="rowid" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="bodega" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="bodega" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'tecnologia.Conteo.Canastas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Canastas">
+          <Key>
+            <PropertyRef Name="rowid_canasta" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="rowid_bodega" />
+            <PropertyRef Name="pasillo" />
+            <PropertyRef Name="bloque" />
+            <PropertyRef Name="canasta" />
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="referencia" />
+          </Key>
+          <Property Name="rowid_canasta" Type="int" Nullable="false" />
+          <Property Name="id" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="rowid_bodega" Type="int" Nullable="false" />
+          <Property Name="pasillo" Type="int" Nullable="false" />
+          <Property Name="bloque" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="canasta" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="barras" Type="varchar" MaxLength="20" />
+          <Property Name="referencia" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="talla" Type="char" MaxLength="20" />
+          <Property Name="color" Type="char" MaxLength="20" />
+          <Property Name="Cant" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'tecnologia.Conteo.SKU' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="SKU">
+          <Key>
+            <PropertyRef Name="rowid" />
+            <PropertyRef Name="referencia" />
+            <PropertyRef Name="estado" />
+          </Key>
+          <Property Name="rowid" Type="int" Nullable="false" />
+          <Property Name="barras" Type="varchar" MaxLength="20" />
+          <Property Name="referencia" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="talla" Type="char" MaxLength="20" />
+          <Property Name="color" Type="char" MaxLength="20" />
+          <Property Name="estado" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_asignacion_producto">
+          <End Role="producto" Type="Self.producto" Multiplicity="1" />
+          <End Role="asignacion" Type="Self.asignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="asignacion">
+              <PropertyRef Name="rowid_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_canasta">
+          <End Role="canasta" Type="Self.canasta" Multiplicity="1" />
+          <End Role="canasta_detalle" Type="Self.canasta_detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="canasta">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="canasta_detalle">
+              <PropertyRef Name="rowid_canasta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comp_procesador">
+          <End Role="procesador" Type="Self.procesador" Multiplicity="1" />
+          <End Role="computador" Type="Self.computador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procesador">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="computador">
+              <PropertyRef Name="rowid_procesador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comp_producto">
+          <End Role="producto" Type="Self.producto" Multiplicity="1" />
+          <End Role="computador" Type="Self.computador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="computador">
+              <PropertyRef Name="rowid_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comp_sistema">
+          <End Role="sistema" Type="Self.sistema" Multiplicity="1" />
+          <End Role="computador" Type="Self.computador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sistema">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="computador">
+              <PropertyRef Name="rowid_sistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_his_producto">
+          <End Role="producto" Type="Self.producto" Multiplicity="1" />
+          <End Role="historico" Type="Self.historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="historico">
+              <PropertyRef Name="rowid_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_imp_producto">
+          <End Role="producto" Type="Self.producto" Multiplicity="1" />
+          <End Role="impresora" Type="Self.impresora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="impresora">
+              <PropertyRef Name="rowid_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_marca_tipo">
+          <End Role="tipo" Type="Self.tipo" Multiplicity="1" />
+          <End Role="marca" Type="Self.marca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="marca">
+              <PropertyRef Name="rowid_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tecnologiaModelStoreContainer">
+          <EntitySet Name="canasta" EntityType="Self.canasta" Schema="Conteo" store:Type="Tables" />
+          <EntitySet Name="canasta_detalle" EntityType="Self.canasta_detalle" Schema="Conteo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="asignacion" EntityType="Self.asignacion" Schema="Inv" store:Type="Tables" />
+          <EntitySet Name="computador" EntityType="Self.computador" Schema="Inv" store:Type="Tables" />
+          <EntitySet Name="historico" EntityType="Self.historico" Schema="Inv" store:Type="Tables" />
+          <EntitySet Name="impresora" EntityType="Self.impresora" Schema="Inv" store:Type="Tables" />
+          <EntitySet Name="marca" EntityType="Self.marca" Schema="Inv" store:Type="Tables" />
+          <EntitySet Name="procesador" EntityType="Self.procesador" Schema="Inv" store:Type="Tables" />
+          <EntitySet Name="producto" EntityType="Self.producto" Schema="Inv" store:Type="Tables" />
+          <EntitySet Name="sistema" EntityType="Self.sistema" Schema="Inv" store:Type="Tables" />
+          <EntitySet Name="tipo" EntityType="Self.tipo" Schema="Inv" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="Perfil" store:Type="Tables" />
+          <EntitySet Name="Bodegas" EntityType="Self.Bodegas" store:Type="Views" store:Schema="Conteo">
+            <DefiningQuery>SELECT 
+    [Bodegas].[rowid] AS [rowid], 
+    [Bodegas].[id] AS [id], 
+    [Bodegas].[bodega] AS [bodega]
+    FROM [Conteo].[Bodegas] AS [Bodegas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Canastas" EntityType="Self.Canastas" store:Type="Views" store:Schema="Conteo">
+            <DefiningQuery>SELECT 
+    [Canastas].[rowid_canasta] AS [rowid_canasta], 
+    [Canastas].[id] AS [id], 
+    [Canastas].[rowid_bodega] AS [rowid_bodega], 
+    [Canastas].[pasillo] AS [pasillo], 
+    [Canastas].[bloque] AS [bloque], 
+    [Canastas].[canasta] AS [canasta], 
+    [Canastas].[usuario] AS [usuario], 
+    [Canastas].[fecha] AS [fecha], 
+    [Canastas].[barras] AS [barras], 
+    [Canastas].[referencia] AS [referencia], 
+    [Canastas].[talla] AS [talla], 
+    [Canastas].[color] AS [color], 
+    [Canastas].[Cant] AS [Cant]
+    FROM [Conteo].[Canastas] AS [Canastas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SKU" EntityType="Self.SKU" store:Type="Views" store:Schema="Conteo">
+            <DefiningQuery>SELECT 
+    [SKU].[rowid] AS [rowid], 
+    [SKU].[barras] AS [barras], 
+    [SKU].[referencia] AS [referencia], 
+    [SKU].[talla] AS [talla], 
+    [SKU].[color] AS [color], 
+    [SKU].[estado] AS [estado]
+    FROM [Conteo].[SKU] AS [SKU]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_asignacion_producto" Association="Self.FK_asignacion_producto">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="asignacion" EntitySet="asignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_canasta" Association="Self.FK_canasta">
+            <End Role="canasta" EntitySet="canasta" />
+            <End Role="canasta_detalle" EntitySet="canasta_detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comp_procesador" Association="Self.FK_comp_procesador">
+            <End Role="procesador" EntitySet="procesador" />
+            <End Role="computador" EntitySet="computador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comp_producto" Association="Self.FK_comp_producto">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="computador" EntitySet="computador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comp_sistema" Association="Self.FK_comp_sistema">
+            <End Role="sistema" EntitySet="sistema" />
+            <End Role="computador" EntitySet="computador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_his_producto" Association="Self.FK_his_producto">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="historico" EntitySet="historico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_imp_producto" Association="Self.FK_imp_producto">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="impresora" EntitySet="impresora" />
+          </AssociationSet>
+          <AssociationSet Name="FK_marca_tipo" Association="Self.FK_marca_tipo">
+            <End Role="tipo" EntitySet="tipo" />
+            <End Role="marca" EntitySet="marca" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tecnologiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="NombreUsuario" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Contraseña" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Identificacion" Type="Int32" />
+          <Property Name="Nombre" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Apellido" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="RolID" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="UsuarioCreacion" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="FechaCreacion" Precision="0" Type="DateTime" />
+          <Property Name="UsuarioActualizacion" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="FechaActualizacion" Precision="0" Type="DateTime" />
+          <Property Name="Img_DocIdentidad" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Bodega" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Correo" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="fechaModificacion" Precision="0" Type="DateTime" />
+          <Property Name="ind_cambiarClave" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Bodegas">
+          <Key>
+            <PropertyRef Name="rowid" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="bodega" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="id" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" Type="String" />
+          <Property Name="bodega" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" Type="String" />
+        </EntityType>
+        <EntityType Name="SKU">
+          <Key>
+            <PropertyRef Name="rowid" />
+            <PropertyRef Name="referencia" />
+            <PropertyRef Name="estado" />
+          </Key>
+          <Property Name="rowid" Nullable="false" Type="Int32" />
+          <Property Name="barras" MaxLength="20" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="referencia" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" Type="String" />
+          <Property Name="talla" MaxLength="20" FixedLength="true" Unicode="false" Type="String" />
+          <Property Name="color" MaxLength="20" FixedLength="true" Unicode="false" Type="String" />
+          <Property Name="estado" Nullable="false" Type="Int16" />
+        </EntityType>
+        <EntityContainer Name="tecnologiaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="Bodegas" EntityType="Self.Bodegas" />
+          <EntitySet Name="SKU" EntityType="Self.SKU" />
+          <EntitySet Name="asignacion" EntityType="tecnologiaModel.asignacion" />
+          <EntitySet Name="computador" EntityType="tecnologiaModel.computador" />
+          <EntitySet Name="historico" EntityType="tecnologiaModel.historico" />
+          <EntitySet Name="impresora" EntityType="tecnologiaModel.impresora" />
+          <EntitySet Name="marca" EntityType="tecnologiaModel.marca" />
+          <EntitySet Name="procesador" EntityType="tecnologiaModel.procesador" />
+          <EntitySet Name="producto" EntityType="tecnologiaModel.producto" />
+          <EntitySet Name="sistema" EntityType="tecnologiaModel.sistema" />
+          <EntitySet Name="tipo" EntityType="tecnologiaModel.tipo" />
+          <AssociationSet Name="FK_asignacion_producto" Association="tecnologiaModel.FK_asignacion_producto">
+            <End EntitySet="producto" Role="producto" />
+            <End EntitySet="asignacion" Role="asignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comp_procesador" Association="tecnologiaModel.FK_comp_procesador">
+            <End EntitySet="procesador" Role="procesador" />
+            <End EntitySet="computador" Role="computador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comp_producto" Association="tecnologiaModel.FK_comp_producto">
+            <End EntitySet="producto" Role="producto" />
+            <End EntitySet="computador" Role="computador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comp_sistema" Association="tecnologiaModel.FK_comp_sistema">
+            <End EntitySet="sistema" Role="sistema" />
+            <End EntitySet="computador" Role="computador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_his_producto" Association="tecnologiaModel.FK_his_producto">
+            <End EntitySet="producto" Role="producto" />
+            <End EntitySet="historico" Role="historico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_imp_producto" Association="tecnologiaModel.FK_imp_producto">
+            <End EntitySet="producto" Role="producto" />
+            <End EntitySet="impresora" Role="impresora" />
+          </AssociationSet>
+          <AssociationSet Name="FK_marca_tipo" Association="tecnologiaModel.FK_marca_tipo">
+            <End EntitySet="tipo" Role="tipo" />
+            <End EntitySet="marca" Role="marca" />
+          </AssociationSet>
+          <EntitySet Name="canasta" EntityType="tecnologiaModel.canasta" />
+          <EntitySet Name="canasta_detalle" EntityType="tecnologiaModel.canasta_detalle" />
+          <AssociationSet Name="FK_canasta" Association="tecnologiaModel.FK_canasta">
+            <End EntitySet="canasta" Role="canasta" />
+            <End EntitySet="canasta_detalle" Role="canasta_detalle" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="tecnologiaModel.sysdiagrams" />
+          <EntitySet Name="Canastas" EntityType="tecnologiaModel.Canastas" />
+        </EntityContainer>
+        <EntityType Name="asignacion">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="rowid_producto" Nullable="false" Type="Int32" />
+          <Property Name="rowid_empleado" Nullable="false" Type="Int32" />
+          <Property Name="cedul" MaxLength="50" FixedLength="true" Unicode="true" Type="String" />
+          <NavigationProperty Name="producto" Relationship="tecnologiaModel.FK_asignacion_producto" FromRole="asignacion" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="computador">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="rowid_producto" Nullable="false" Type="Int32" />
+          <Property Name="rowid_procesador" Nullable="false" Type="Int32" />
+          <Property Name="nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="mac" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="mac_wifi" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="ip" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="ip_wifi" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="memoria" Nullable="false" Type="Int32" />
+          <Property Name="disco1" Nullable="false" Type="Int32" />
+          <Property Name="disco2" Type="Int32" />
+          <Property Name="disco3" Type="Int32" />
+          <Property Name="rowid_sistema" Nullable="false" Type="Int32" />
+          <Property Name="bits" Type="Int32" />
+          <NavigationProperty Name="procesador" Relationship="tecnologiaModel.FK_comp_procesador" FromRole="computador" ToRole="procesador" />
+          <NavigationProperty Name="producto" Relationship="tecnologiaModel.FK_comp_producto" FromRole="computador" ToRole="producto" />
+          <NavigationProperty Name="sistema" Relationship="tecnologiaModel.FK_comp_sistema" FromRole="computador" ToRole="sistema" />
+        </EntityType>
+        <EntityType Name="historico">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="rowid_producto" Nullable="false" Type="Int32" />
+          <Property Name="fecha" Nullable="false" Precision="3" Type="DateTime" />
+          <Property Name="conexion" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <NavigationProperty Name="producto" Relationship="tecnologiaModel.FK_his_producto" FromRole="historico" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="impresora">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="rowid_producto" Nullable="false" Type="Int32" />
+          <Property Name="tipo_impresora" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="conexion" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="mac" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="ip" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <NavigationProperty Name="producto" Relationship="tecnologiaModel.FK_imp_producto" FromRole="impresora" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="marca">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="rowid_tipo" Nullable="false" Type="Int32" />
+          <Property Name="nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <NavigationProperty Name="tipo" Relationship="tecnologiaModel.FK_marca_tipo" FromRole="marca" ToRole="tipo" />
+        </EntityType>
+        <EntityType Name="procesador">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <NavigationProperty Name="computador" Relationship="tecnologiaModel.FK_comp_procesador" FromRole="procesador" ToRole="computador" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="rowid_tipo" Nullable="false" Type="Int32" />
+          <Property Name="rowid_marca" Nullable="false" Type="Int32" />
+          <Property Name="serie" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="modelo" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="funciona" Nullable="false" Type="Int16" />
+          <Property Name="pulgadas" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <NavigationProperty Name="asignacion" Relationship="tecnologiaModel.FK_asignacion_producto" FromRole="producto" ToRole="asignacion" />
+          <NavigationProperty Name="computador" Relationship="tecnologiaModel.FK_comp_producto" FromRole="producto" ToRole="computador" />
+          <NavigationProperty Name="historico" Relationship="tecnologiaModel.FK_his_producto" FromRole="producto" ToRole="historico" />
+          <NavigationProperty Name="impresora" Relationship="tecnologiaModel.FK_imp_producto" FromRole="producto" ToRole="impresora" />
+        </EntityType>
+        <EntityType Name="sistema">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <NavigationProperty Name="computador" Relationship="tecnologiaModel.FK_comp_sistema" FromRole="sistema" ToRole="computador" />
+        </EntityType>
+        <EntityType Name="tipo">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="tipo1" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="abr" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <NavigationProperty Name="marca" Relationship="tecnologiaModel.FK_marca_tipo" FromRole="tipo" ToRole="marca" />
+        </EntityType>
+        <Association Name="FK_asignacion_producto">
+          <End Type="tecnologiaModel.producto" Multiplicity="1" Role="producto" />
+          <End Type="tecnologiaModel.asignacion" Multiplicity="*" Role="asignacion" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="asignacion">
+              <PropertyRef Name="rowid_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comp_procesador">
+          <End Type="tecnologiaModel.procesador" Multiplicity="1" Role="procesador" />
+          <End Type="tecnologiaModel.computador" Multiplicity="*" Role="computador" />
+          <ReferentialConstraint>
+            <Principal Role="procesador">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="computador">
+              <PropertyRef Name="rowid_procesador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comp_producto">
+          <End Type="tecnologiaModel.producto" Multiplicity="1" Role="producto" />
+          <End Type="tecnologiaModel.computador" Multiplicity="*" Role="computador" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="computador">
+              <PropertyRef Name="rowid_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comp_sistema">
+          <End Type="tecnologiaModel.sistema" Multiplicity="1" Role="sistema" />
+          <End Type="tecnologiaModel.computador" Multiplicity="*" Role="computador" />
+          <ReferentialConstraint>
+            <Principal Role="sistema">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="computador">
+              <PropertyRef Name="rowid_sistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_his_producto">
+          <End Type="tecnologiaModel.producto" Multiplicity="1" Role="producto" />
+          <End Type="tecnologiaModel.historico" Multiplicity="*" Role="historico" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="historico">
+              <PropertyRef Name="rowid_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_imp_producto">
+          <End Type="tecnologiaModel.producto" Multiplicity="1" Role="producto" />
+          <End Type="tecnologiaModel.impresora" Multiplicity="*" Role="impresora" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="impresora">
+              <PropertyRef Name="rowid_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_marca_tipo">
+          <End Type="tecnologiaModel.tipo" Multiplicity="1" Role="tipo" />
+          <End Type="tecnologiaModel.marca" Multiplicity="*" Role="marca" />
+          <ReferentialConstraint>
+            <Principal Role="tipo">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="marca">
+              <PropertyRef Name="rowid_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="canasta">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="rowid_bodega" Nullable="false" Type="Int32" />
+          <Property Name="pasillo" Nullable="false" Type="Int32" />
+          <Property Name="bloque" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="canasta1" Nullable="false" Type="Int32" />
+          <Property Name="usuario" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="fecha" Precision="3" Type="DateTime" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="canasta_detalle" Relationship="tecnologiaModel.FK_canasta" FromRole="canasta" ToRole="canasta_detalle" />
+        </EntityType>
+        <EntityType Name="canasta_detalle">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="rowid_canasta" Nullable="false" Type="Int32" />
+          <Property Name="barras" MaxLength="20" FixedLength="false" Unicode="false" Type="String" />
+          <NavigationProperty Name="canasta" Relationship="tecnologiaModel.FK_canasta" FromRole="canasta_detalle" ToRole="canasta" />
+          <Property Name="cant" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_canasta">
+          <End Type="tecnologiaModel.canasta" Multiplicity="1" Role="canasta" />
+          <End Type="tecnologiaModel.canasta_detalle" Multiplicity="*" Role="canasta_detalle" />
+          <ReferentialConstraint>
+            <Principal Role="canasta">
+              <PropertyRef Name="rowid" />
+            </Principal>
+            <Dependent Role="canasta_detalle">
+              <PropertyRef Name="rowid_canasta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Canastas">
+          <Key>
+            <PropertyRef Name="rowid_canasta" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="rowid_bodega" />
+            <PropertyRef Name="pasillo" />
+            <PropertyRef Name="bloque" />
+            <PropertyRef Name="canasta" />
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="referencia" />
+          </Key>
+          <Property Name="rowid_canasta" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="rowid_bodega" Type="Int32" Nullable="false" />
+          <Property Name="pasillo" Type="Int32" Nullable="false" />
+          <Property Name="bloque" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="canasta" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="barras" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="referencia" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="talla" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="color" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Cant" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tecnologiaModelStoreContainer" CdmEntityContainer="tecnologiaEntities">
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="tecnologiaModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioActualizacion" ColumnName="UsuarioActualizacion" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="Img_DocIdentidad" ColumnName="Img_DocIdentidad" />
+                <ScalarProperty Name="Bodega" ColumnName="Bodega" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="ind_cambiarClave" ColumnName="ind_cambiarClave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bodegas">
+            <EntityTypeMapping TypeName="tecnologiaModel.Bodegas">
+              <MappingFragment StoreEntitySet="Bodegas">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="bodega" ColumnName="bodega" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SKU">
+            <EntityTypeMapping TypeName="tecnologiaModel.SKU">
+              <MappingFragment StoreEntitySet="SKU">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="barras" ColumnName="barras" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="talla" ColumnName="talla" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="asignacion">
+            <EntityTypeMapping TypeName="tecnologiaModel.asignacion">
+              <MappingFragment StoreEntitySet="asignacion">
+                <ScalarProperty Name="cedul" ColumnName="cedul" />
+                <ScalarProperty Name="rowid_empleado" ColumnName="rowid_empleado" />
+                <ScalarProperty Name="rowid_producto" ColumnName="rowid_producto" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="computador">
+            <EntityTypeMapping TypeName="tecnologiaModel.computador">
+              <MappingFragment StoreEntitySet="computador">
+                <ScalarProperty Name="bits" ColumnName="bits" />
+                <ScalarProperty Name="rowid_sistema" ColumnName="rowid_sistema" />
+                <ScalarProperty Name="disco3" ColumnName="disco3" />
+                <ScalarProperty Name="disco2" ColumnName="disco2" />
+                <ScalarProperty Name="disco1" ColumnName="disco1" />
+                <ScalarProperty Name="memoria" ColumnName="memoria" />
+                <ScalarProperty Name="ip_wifi" ColumnName="ip_wifi" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="mac_wifi" ColumnName="mac_wifi" />
+                <ScalarProperty Name="mac" ColumnName="mac" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="rowid_procesador" ColumnName="rowid_procesador" />
+                <ScalarProperty Name="rowid_producto" ColumnName="rowid_producto" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historico">
+            <EntityTypeMapping TypeName="tecnologiaModel.historico">
+              <MappingFragment StoreEntitySet="historico">
+                <ScalarProperty Name="conexion" ColumnName="conexion" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="rowid_producto" ColumnName="rowid_producto" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="impresora">
+            <EntityTypeMapping TypeName="tecnologiaModel.impresora">
+              <MappingFragment StoreEntitySet="impresora">
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="mac" ColumnName="mac" />
+                <ScalarProperty Name="conexion" ColumnName="conexion" />
+                <ScalarProperty Name="tipo_impresora" ColumnName="tipo_impresora" />
+                <ScalarProperty Name="rowid_producto" ColumnName="rowid_producto" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="marca">
+            <EntityTypeMapping TypeName="tecnologiaModel.marca">
+              <MappingFragment StoreEntitySet="marca">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="rowid_tipo" ColumnName="rowid_tipo" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="procesador">
+            <EntityTypeMapping TypeName="tecnologiaModel.procesador">
+              <MappingFragment StoreEntitySet="procesador">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="producto">
+            <EntityTypeMapping TypeName="tecnologiaModel.producto">
+              <MappingFragment StoreEntitySet="producto">
+                <ScalarProperty Name="pulgadas" ColumnName="pulgadas" />
+                <ScalarProperty Name="funciona" ColumnName="funciona" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="rowid_marca" ColumnName="rowid_marca" />
+                <ScalarProperty Name="rowid_tipo" ColumnName="rowid_tipo" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sistema">
+            <EntityTypeMapping TypeName="tecnologiaModel.sistema">
+              <MappingFragment StoreEntitySet="sistema">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo">
+            <EntityTypeMapping TypeName="tecnologiaModel.tipo">
+              <MappingFragment StoreEntitySet="tipo">
+                <ScalarProperty Name="abr" ColumnName="abr" />
+                <ScalarProperty Name="tipo1" ColumnName="tipo" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="canasta">
+            <EntityTypeMapping TypeName="tecnologiaModel.canasta">
+              <MappingFragment StoreEntitySet="canasta">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="canasta1" ColumnName="canasta" />
+                <ScalarProperty Name="bloque" ColumnName="bloque" />
+                <ScalarProperty Name="pasillo" ColumnName="pasillo" />
+                <ScalarProperty Name="rowid_bodega" ColumnName="rowid_bodega" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="canasta_detalle">
+            <EntityTypeMapping TypeName="tecnologiaModel.canasta_detalle">
+              <MappingFragment StoreEntitySet="canasta_detalle">
+                <ScalarProperty Name="cant" ColumnName="cant" />
+                <ScalarProperty Name="barras" ColumnName="barras" />
+                <ScalarProperty Name="rowid_canasta" ColumnName="rowid_canasta" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="tecnologiaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Canastas">
+            <EntityTypeMapping TypeName="tecnologiaModel.Canastas">
+              <MappingFragment StoreEntitySet="Canastas">
+                <ScalarProperty Name="Cant" ColumnName="Cant" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="talla" ColumnName="talla" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="barras" ColumnName="barras" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="canasta" ColumnName="canasta" />
+                <ScalarProperty Name="bloque" ColumnName="bloque" />
+                <ScalarProperty Name="pasillo" ColumnName="pasillo" />
+                <ScalarProperty Name="rowid_bodega" ColumnName="rowid_bodega" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rowid_canasta" ColumnName="rowid_canasta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

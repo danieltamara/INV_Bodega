@@ -1,0 +1,42 @@
+﻿@model INV_Bodega.Models.canasta_detalle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>canasta_detalle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.barras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.barras)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.canasta.bloque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.canasta.bloque)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.rowid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

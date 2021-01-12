@@ -1,0 +1,88 @@
+﻿@model INV_Bodega.Models.canasta
+
+@{
+    ViewBag.Title = "Create";
+    string miCookie = (string)ViewBag.miCookie;
+    string usuario = ViewBag.nombre;
+
+    @*if (TempData["testmsg"] != null)
+    {
+        @Html.Raw(TempData["testmsg"])
+    }*@
+}
+
+
+
+<h2>Crear Canasta</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        <label class="control-label col-md-2">Bodega</label>
+        <div class="col-md-10">
+            @Html.DropDownList("rowid_bodega", null, htmlAttributes: new { @class = "form-control" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Pasillo</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.pasillo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.pasillo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Bloque</label>
+        <div class="col-md-10">
+            <select name="bloque" class="form-control">
+                <option value="A">A</option>
+                <option value="B">B</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.bloque, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Canasta</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.canasta1, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.canasta1, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="hidden"  name="estado" value="0" class="form-control" readonly="readonly" />
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        <div class="col-md-10">
+            <input type="hidden" name="usuario" value="@ViewBag.usuario" class="form-control" readonly="readonly" />
+            @Html.ValidationMessageFor(model => model.usuario, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Generar Canasta" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("<-Regresar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

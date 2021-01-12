@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4619d16acf9f4ffb9eeab0bd036c0226" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="tecnologiaModel.Usuario" PointX="8.75" PointY="0.75" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tecnologiaModel.Bodegas" PointX="5.75" PointY="0.75" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tecnologiaModel.SKU" PointX="8.75" PointY="6.75" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tecnologiaModel.asignacion" PointX="3" PointY="11.75" Width="1.5" />
+        <EntityTypeShape EntityType="tecnologiaModel.computador" PointX="6" PointY="5.75" Width="1.5" />
+        <EntityTypeShape EntityType="tecnologiaModel.historico" PointX="3" PointY="4" Width="1.5" />
+        <EntityTypeShape EntityType="tecnologiaModel.impresora" PointX="3" PointY="14.5" Width="1.5" />
+        <EntityTypeShape EntityType="tecnologiaModel.marca" PointX="3" PointY="0.875" Width="1.5" />
+        <EntityTypeShape EntityType="tecnologiaModel.procesador" PointX="3.75" PointY="6.875" Width="1.5" />
+        <EntityTypeShape EntityType="tecnologiaModel.producto" PointX="0.75" PointY="6.375" Width="1.5" />
+        <EntityTypeShape EntityType="tecnologiaModel.sistema" PointX="3.75" PointY="9.25" Width="1.5" />
+        <EntityTypeShape EntityType="tecnologiaModel.tipo" PointX="0.75" PointY="0.875" Width="1.5" />
+        <AssociationConnector Association="tecnologiaModel.FK_asignacion_producto" />
+        <AssociationConnector Association="tecnologiaModel.FK_comp_procesador" />
+        <AssociationConnector Association="tecnologiaModel.FK_comp_producto" />
+        <AssociationConnector Association="tecnologiaModel.FK_comp_sistema" />
+        <AssociationConnector Association="tecnologiaModel.FK_his_producto" />
+        <AssociationConnector Association="tecnologiaModel.FK_imp_producto" />
+        <AssociationConnector Association="tecnologiaModel.FK_marca_tipo" />
+        <EntityTypeShape EntityType="tecnologiaModel.canasta" PointX="8.375" PointY="9.75" Width="1.5" />
+        <EntityTypeShape EntityType="tecnologiaModel.canasta_detalle" PointX="10.375" PointY="9.75" Width="1.5" />
+        <AssociationConnector Association="tecnologiaModel.FK_canasta" />
+        <EntityTypeShape EntityType="tecnologiaModel.sysdiagrams" Width="1.5" PointX="11.375" PointY="5.75" />
+        <EntityTypeShape EntityType="tecnologiaModel.Canastas" Width="1.5" PointX="11.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

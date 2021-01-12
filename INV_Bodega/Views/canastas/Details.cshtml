@@ -1,0 +1,58 @@
+﻿@model INV_Bodega.Models.canasta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>canasta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.rowid_bodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rowid_bodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pasillo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pasillo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bloque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bloque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.canasta1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.canasta1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.rowid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

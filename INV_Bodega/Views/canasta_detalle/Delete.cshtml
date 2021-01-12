@@ -1,0 +1,48 @@
+﻿@model INV_Bodega.Models.canasta_detalle
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>canasta_detalle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.barras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.barras)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.canasta.bloque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.canasta.bloque)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
